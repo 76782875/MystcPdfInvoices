@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Insert title here</title>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+</style>
+</head>
+<body>
+
+<img th:src="@{classpath:static/images/stc.png}" width="105" height="40"/>
+
+
+
+
+<h2 style="text-align: center; color: red">
+      <span th:text="${CustomerName} + ' PDF Invoice'"></span>
+    </h2>
+    
+    <table style="width:100%">
+
+  <tr>
+    <td><h3>Customer Name:</h3></td>
+    <td><p th:text="${CustomerName}" /></td>
+  </tr>
+  
+  <tr>
+    <td><h3>Customer ID:</h3></td>
+    <td><p th:text="${CustomerID}" /></td>
+  </tr>
+  <tr>
+    <td><h3>Invoice Date:</h3></td>
+    <td><p th:text="${InvoiceDate}" /></td>
+  </tr>
+  <tr>
+    <td><h3>Agent Name:</h3></td>
+    <td><p th:text="${AgentName}" /></td>
+  </tr>
+  <tr>
+    <td><h3>Agent ID:</h3></td>
+    <td><p th:text="${AgentID}" /></td>
+  </tr>
+  <tr>
+    <td><h3>Device Name:</h3></td>
+    <td><p th:text="${DeviceName}" /></td>
+  </tr>
+  <tr>
+    <td><h3>Device Color:</h3></td>
+    <td><p th:text="${DeviceColor}" /></td>
+  </tr>
+  <tr>
+    <td><h3>Device Size:</h3></td>
+    <td><p th:text="${DeviceSize}" /></td>
+  </tr>
+  <tr>
+    <td><h3>Device Memory:</h3></td>
+    <td><p th:text="${DeviceMemory}" /></td>
+  </tr>
+  <tr>
+    <td><h3>Device IMEI:</h3></td>
+    <td><p th:text="${DeviceIMEI}" />/</td>
+  </tr>
+  <tr>
+    <td><h3>Order Number:</h3></td>
+    <td><p th:text="${OrderNumber}" /></td>
+  </tr>
+
+</table>
+
+</body>
+</html>

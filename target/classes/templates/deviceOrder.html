@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Device Order PDF Invoice</title>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+input[type=submit] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+input[type=text], input[type=number] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  background-color: #F1EEF9;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+<h2 style="text-align: center; color: gray">Generate Your Device Order PDF Invoice</h2>
+
+
+    <form name="myForm" action="#" th:action="@{/deviceOrder}" th:object="${deviceOrder}" method="post" onsubmit="return checkInput()">
+    
+    <table style="width:60%">
+
+  <tr>
+    <td>Customer Name:</td>
+    <td><input type="text" name="customerName" th:field="*{customerName}" required placeholder="Ahmed Ali"/></td>
+  </tr>
+  
+  <tr>
+    <td>Customer ID:</td>
+    <td><input type="text" name="customerID" th:field="*{customerID}" pattern="\d{10}" title="Error: 10 digits are required." required placeholder="Must be 10 digits"/></td>
+  </tr>
+  <tr>
+    <td>Invoice Date:</td>
+    <td><input type="text" th:field="*{invoiceDate}" pattern="\d{1,2}/\d{1,2}/\d{4}" title="Error: Date of format DD/MM/YYYY is required." required placeholder="DD/MM/YYYY"/></td>
+  </tr>
+  <tr>
+    <td>Agent Name:</td>
+    <td><input type="text" name="agentName" th:field="*{agentName}" required placeholder="Ahmed Ali"/></td>
+  </tr>
+  <tr>
+    <td>Agent ID:</td>
+    <td><input type="text" name="agentID" th:field="*{agentID}" pattern="\d{10}" title="Error: 10 digits are required." required placeholder="Must be 10 digits"/></td>
+  </tr>
+  <tr>
+    <td>Device Name:</td>
+    <td><input type="text" name="deviceName" th:field="*{deviceName}" required placeholder="iPhone/Note+..."/></td>
+  </tr>
+  <tr>
+    <td>Device Color:</td>
+    <td><input type="text" name="deviceColor" th:field="*{deviceColor}" required placeholder="Black/red..."/></td>
+  </tr>
+  <tr>
+    <td>Device Size:</td>
+    <td><input type="number" th:field="*{deviceSize}" required step="0.01" placeholder='3.5"'/></td>
+  </tr>
+  <tr>
+    <td>Device Memory:</td>
+    <td><input type="number" th:field="*{deviceMemory}" required placeholder="In giga"/></td>
+  </tr>
+  <tr>
+    <td>Device IMEI:</td>
+    <td><input type="text" name="deviceIMEI" th:field="*{deviceIMEI}" pattern="\d{15}" title="Error: 15 digits are required." required placeholder="Must be 15 digits"/></td>
+  </tr>
+  <tr>
+    <td>Order Number:</td>
+    <td><input type="number" th:field="*{orderNumber}" required /></td>
+  </tr>
+
+</table>
+
+
+        <input type="submit" value="Submit"/>
+
+    </form>
+    
+    <script type="text/javascript">
+    
+    function checkInput()
+    {
+      var customerNameVar = document.forms["myForm"]["customerName"].value;
+      var agentNameVar = document.forms["myForm"]["agentName"].value;
+      var deviceNameVar = document.forms["myForm"]["deviceName"].value;
+      var deviceColorVar = document.forms["myForm"]["deviceColor"].value;
+      
+      var customerIDVar = document.forms["myForm"]["customerID"].value;
+      var agentIDVar = document.forms["myForm"]["agentID"].value;
+      var deviceIMEIVar = document.forms["myForm"]["deviceIMEI"].value;
+      
+      // check String
+      if ( (!isNaN(customerNameVar)) || (!isNaN(agentNameVar)) || (!isNaN(deviceNameVar)) || (!isNaN(deviceColorVar)) ) 
+      {
+        alert("Please check Customer Name, Agent Name, Device Name, and Device Color.");
+        return false;
+      }
+      // check numbers
+      if ( (isNaN(customerIDVar)) || (isNaN(agentIDVar)) || (isNaN(deviceIMEIVar)) ) 
+      {
+        alert("Please check Customer ID, Agent ID, and Device IMEI");
+        return false;
+      }
+      
+      
+    }
+    </script>
+    
+</body>
+
+
+</html>
